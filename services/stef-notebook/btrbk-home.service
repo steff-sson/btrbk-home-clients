@@ -1,0 +1,11 @@
+# Kopiere diese Datei nach /etc/systemd/system/btrbk-home.service
+[Unit]
+Description=btrbk backup – btrbk.conf
+Documentation=man:btrbk(1)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/btrbk -c /etc/btrbk/home.conf run
+
+[Install]
+WantedBy=multi-user.target

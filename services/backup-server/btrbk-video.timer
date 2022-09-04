@@ -1,0 +1,11 @@
+# Kopiere diese Datei nach /etc/systemd/system/btrbk-video.timer
+[Unit]
+Description=btrbk weekly backup – video.conf
+
+[Timer]
+OnCalendar=Sun 05:10:00
+AccuracySec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,8 @@
+# Kopiere diese Datei nach /etc/systemd/system/btrbk-video.service
+[Unit]
+Description=btrbk backup video.conf
+Documentation=man:btrbk(1)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/btrbk -c /etc/btrbk/video.conf run
