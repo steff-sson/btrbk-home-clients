@@ -14,7 +14,7 @@ Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](h
 ## Paketinhalte
 * In `services` findest du die Systemd-Service- und -Timer Dateien nach Gerät sortiert.
 * In `btrbk`findest du die Konfigurtionsdateien für btrbk nach Geräten sortiert.
-* `services/pkglist.service` wird von jedem Gerät beim Start ausgeführt. Der Service schreibt mit [pacman](https://wiki.archlinux.org/title/pacman) eine aktuelle Liste installierter Pakte. 
+* `services/pkglist.service` wird von jedem Gerät beim Start ausgeführt. Der Service schreibt mit [pacman](https://wiki.archlinux.org/title/pacman) eine aktuelle Liste installierter Pakte.
 
 
 ## Erklärung
@@ -32,7 +32,17 @@ Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](h
 * **/@backups** - für lokale Backups
 * BTRBK wird mit zwei Services aufgerufen:
   * **btrbk-root.service** schreibt Snapshots von **/@** sowie darauf aufbauend Backups nach **/@backups** (lokale Backups)
-  * **btrbk-home.service** schreibt Snapshots von **/@home** sowie darauf aufbauend Backups nach **ssh://192.168.188.10/volume1/snapshots/stef-notebook** und **ssh://192.168.188.10/volumeUSB/snapshots/stef-notebook** (remote Backups)
+  * **btrbk-home.service** schreibt Snapshots von **/@home** sowie darauf aufbauend Backups nach **[IP-Backup-Server]/volume1/snapshots/stef-notebook** und **ssh://[IP-Backup-Server]/volumeUSB/snapshots/stef-notebook** (remote Backups)
 
 ### Johanna-Laptop
 * folgt dem selben muster wie "stef-notebook"
+
+### Hinweis zu Remote Backups
+* Damit btrbk auf entfertne Server per SSH zugreifen kann, muss ein SSH-Kepair angelegt und auf der öffentliche Schlüssel (publickey) auf den Server kopiert werden.
+* ACHTUNG: Dazu muss der Server den root-Zugriff temporär ermöglichen! (siehe [Arch-Wiki](https://wiki.archlinux.org/title/OpenSSH#Limit_root_login))
+* Führe folgende Schritte aus, um ein Schlüsselpaar zu erstellen und zu kopieren:
+```
+ssh-keygen -t ed25519 -f /etc/btrbk/id_btrbk
+ssh-copy-id -i /etc/btrbk/id_btrbk.pub root@[IP-Backup-Server]
+```
+* Im Anschluss kann der root-Zugriff wieder beschränkt werden. (siehe [Arch-Wiki](https://wiki.archlinux.org/title/OpenSSH#Limit_root_login))
