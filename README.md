@@ -1,1 +1,38 @@
 # btrbk-home-clients
+
+Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](https://github.com/digint/btrbk).
+
+## Architektur
+* Es gibt **einen zentralen** Backup-Server, der Backups empfängt.
+* **Backup-Clients** können der Backup-Server selbst sein (z.B. Subvolumes innerhalb des Servers), aber auch Subvolumes anderer Geräte innerhalb des Netzwerkes.
+* Backup-Cliets rufen **btrbk** täglich mittels eigens erstellter Systemd-Services auf.
+* Btrbk erstellt je ein **Snapshot** und ein **Backup** (in Btrfs-Terminologie `btrfs send|receive`) – beides sind BTRFS-Snapshots von Subvolumes.
+* Dazu müssen die dafür erforderlichen Suubvolumes vorhanden sein.
+* Für Snapshots und Backups können unterschiedliche Aufbewahrungszeiten (**snapshot_preserve** und **target_preserve**) eingestellt werden.
+* Für jeden Service existiert eine eigene *.conf Datei für btrbk, damit jeder Service btrbk mit `-c`die jeweilige Konfiguratonsdatei öffnen kann.
+
+## Paketinhalte
+* In `services` findest du die Systemd-Service- und -Timer Dateien nach Gerät sortiert.
+* In `btrbk`findest du die Konfigurtionsdateien für btrbk nach Geräten sortiert.
+* `services/pkglist.service` wird von jedem Gerät beim Start ausgeführt. Der Service schreibt mit [pacman](https://wiki.archlinux.org/title/pacman) eine aktuelle Liste installierter Pakte. 
+
+
+## Erklärung
+### Backup-Server (friedl)
+* **/@snapshots** - für eigene snapshots des Root-Dateisystems
+* **/volume1/@snapshots** für Backups der Clients und Snapshots der Daten
+* **/volumeUSB/@snapshots** für zusätzliche Backups der Clients
+* BTRBK wird mit drei Services aufgerufen, die jeweils mit einem Timer zeitgesteuert werden:
+  * **btrbk-root.service** schreibt um 03:00 Uhr Snapshots von **/@** und **/@home** sowie darauf aufbauend Backups nach **/volume1/@snapshots/friedl** und **/volumeUSB/@snapshots/friedl**
+  * **btrbk-daten.service** schreibt um 03:30 Uhr Snapshots von **/volume1/@daten** sowie darauf aufbauend Backups nach **/volumeUSB/@snapshots/friedl**
+  * **btrbk-video.service** schreibt um 05:10 Uhr Snapshots von **/volume1/@video** nach **/volume1/@snapshots/friedl** sowie darauf aufbauend Backups nach **/volumeUSB/@snapshots/friedl**.
+
+### stef-notebook
+* **/@snapshots** - für eigene snapshots des Root-Dateisystems
+* **/@backups** - für lokale Backups
+* BTRBK wird mit zwei Services aufgerufen:
+  * **btrbk-root.service** schreibt Snapshots von **/@** sowie darauf aufbauend Backups nach **/@backups** (lokale Backups)
+  * **btrbk-home.service** schreibt Snapshots von **/@home** sowie darauf aufbauend Backups nach **ssh://192.168.188.10/volume1/snapshots/stef-notebook** und **ssh://192.168.188.10/volumeUSB/snapshots/stef-notebook** (remote Backups)
+
+### Johanna-Laptop
+* folgt dem selben muster wie "stef-notebook"
