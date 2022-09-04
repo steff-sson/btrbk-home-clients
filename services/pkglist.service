@@ -1,0 +1,10 @@
+[Unit]
+Description=btrbk backup – btrbk.conf
+Documentation=man:btrbk(1)
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '/usr/bin/pacman -Qqe > /home/stef/pkglist.txt'
+
+[Install]
+WantedBy=multi-user.target
