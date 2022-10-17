@@ -2,6 +2,8 @@
 [Unit]
 Description=btrbk backup – btrbk.conf
 Documentation=man:btrbk(1)
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot

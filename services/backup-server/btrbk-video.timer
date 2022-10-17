@@ -3,7 +3,7 @@
 Description=btrbk weekly backup – video.conf
 
 [Timer]
-OnCalendar=Sun 05:10:00
+OnCalendar=Sun 04:00:00
 AccuracySec=10min
 Persistent=true
 
