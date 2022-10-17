@@ -1,0 +1,11 @@
+# Kopiere diese Datei nach /etc/systemd/system/btrbk-root.timer
+[Unit]
+Description=btrbk daily backup – root.conf
+
+[Timer]
+OnCalendar=*-*-* 04:30:00
+AccuracySec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
