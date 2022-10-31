@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Backup mit btrbk
-Comment=Backup mit btrbk
+Comment=Snapshopts und Backups mit btrbk
 Exec=/usr/local/bin/btrbk.sh
 Terminal=true
 Icon=drive-removable-media
