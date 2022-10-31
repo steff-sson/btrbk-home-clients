@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=homebackup
-Comment=Backup von /home
+Name=Backup mit btrbk
+Comment=Backup mit btrbk
 Exec=/usr/local/bin/btrbk.sh
 Terminal=true
 Icon=drive-removable-media

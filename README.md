@@ -8,15 +8,70 @@ Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](h
 * `services/pkglist.service` wird von jedem Gerät beim Start ausgeführt. Der Service schreibt mit [pacman](https://wiki.archlinux.org/title/pacman) eine aktuelle Liste installierter Pakte.
 
 ## Installation mit Systemd-Services (Autostart)
+**Hinweis: btrbk muss installiert sein!**
 
 Klone das  repository
 ```
-git clone https://github.com/steff-sson/btrbk-home-clients.git
+git clone https://github.com/steff-sson/btrbk-home-clients.git && cd btrbk-home-clients
+```
+Mache notwendige Änderungen an den Konfigurationsdateien und kopiere sie anschließend nach /etc/btrbk
+```
+nano btrbk/client/root.conf
+```
+```
+nano btrbk/client/root.conf
+```
+```
+sudo cp btrbk/client/* /etc/btrbk/
+```
+Mache notwendige Änderungen an den Systemd-Servicefiles und kopiere sie anschließend nach /etc/systemd/system
+```
+nano services/client/btrbk-root.service
+```
+```
+nano services/client/btrbk-home.service
+```
+```
+sudo cp services/client/* /etc/systemd/system/
+```
+
+Aktiviere die Systemd-Services
+```
+sudo systemctl enable btrbk-root.service && sudo systemctl enable btrbk-home.service
 ```
 
 
-
 ## Installation mit desktop-Datei für manuellen Start (ohne Services!)
+**Hinweis: btrbk muss installiert sein!**
+
+Klone das  repository
+```
+git clone https://github.com/steff-sson/btrbk-home-clients.git && cd btrbk-home-clients
+```
+Mache notwendige Änderungen an den Konfigurationsdateien und kopiere sie anschließend nach /etc/btrbk
+```
+nano btrbk/client/root.conf
+```
+```
+nano btrbk/client/root.conf
+```
+```
+sudo cp btrbk/client/* /etc/btrbk/
+```
+Wenn du mehr als eine Konfigurationsdatei hast, editiere das Shell-Script, indem die eine weitere Zeile für den btrbk-Befehl auskommentierst und durch deine weitere Konfigurationsdatei ergänzt
+```
+nano scripts/btrbk.sh
+
+# /usr/bin/btrbk -c /etc/btrbk/home.conf run # optional command for further run of configs
+```
+Installiere das Shell-Script
+```
+sudo cp scripts/btrbk.sh /usr/local/bin/ && sudo chmod +x /usr/local/bin/btrbk.sh
+```
+Installiere die Desktop-Datei
+```
+desktop-file-install --dir=$HOME/.local/share/applications scripts/btrbk.desktop && update-desktop-database ~/.local/share/applications
+```
 
 ## Architektur
 * Es gibt **einen zentralen** Backup-Server, der Backups empfängt.
