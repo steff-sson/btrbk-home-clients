@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=homebackup
+Comment=Backup von /home
+Exec=/usr/local/bin/btrbk.sh
+Terminal=true
+Icon=drive-removable-media
+Categories=System
+X-Desktop-File-Install-Version=0.24

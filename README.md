@@ -2,6 +2,20 @@
 
 Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](https://github.com/digint/btrbk).
 
+## Paketinhalte
+* In `services` findest du die Systemd-Service- und -Timer Dateien nach Gerät sortiert.
+* In `btrbk`findest du die Konfigurtionsdateien für btrbk nach Geräten sortiert.
+* `services/pkglist.service` wird von jedem Gerät beim Start ausgeführt. Der Service schreibt mit [pacman](https://wiki.archlinux.org/title/pacman) eine aktuelle Liste installierter Pakte.
+
+## Installation mit Systemd-Services (Autostart)
+
+Klone das  repository
+`git clone https://github.com/steff-sson/btrbk-home-clients.git`
+
+
+
+## Installation mit desktop-Datei für manuellen Start (ohne Services!)
+
 ## Architektur
 * Es gibt **einen zentralen** Backup-Server, der Backups empfängt.
 * **Backup-Clients** können der Backup-Server selbst sein (z.B. Subvolumes innerhalb des Servers), aber auch Subvolumes anderer Geräte innerhalb des Netzwerkes.
@@ -10,12 +24,6 @@ Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](h
 * Dazu müssen die dafür erforderlichen Suubvolumes vorhanden sein.
 * Für Snapshots und Backups können unterschiedliche Aufbewahrungszeiten (**snapshot_preserve** und **target_preserve**) eingestellt werden.
 * Für jeden Service existiert eine eigene *.conf Datei für btrbk, damit jeder Service btrbk mit `-c`die jeweilige Konfiguratonsdatei öffnen kann.
-
-## Paketinhalte
-* In `services` findest du die Systemd-Service- und -Timer Dateien nach Gerät sortiert.
-* In `btrbk`findest du die Konfigurtionsdateien für btrbk nach Geräten sortiert.
-* `services/pkglist.service` wird von jedem Gerät beim Start ausgeführt. Der Service schreibt mit [pacman](https://wiki.archlinux.org/title/pacman) eine aktuelle Liste installierter Pakte.
-
 
 ## Erklärung
 ### Backup-Server (friedl)
