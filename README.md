@@ -10,7 +10,7 @@ Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](h
 ## Installation mit Systemd-Services (Autostart)
 
 Klone das  repository
-`git clone https://github.com/steff-sson/btrbk-home-clients.git`
+```git clone https://github.com/steff-sson/btrbk-home-clients.git```
 
 
 
