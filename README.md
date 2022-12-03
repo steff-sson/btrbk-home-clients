@@ -19,7 +19,7 @@ Mache notwendige Änderungen an den Konfigurationsdateien und kopiere sie anschl
 nano btrbk/client/root.conf
 ```
 ```
-nano btrbk/client/root.conf
+nano btrbk/client/home.conf
 ```
 ```
 sudo cp btrbk/client/* /etc/btrbk/
