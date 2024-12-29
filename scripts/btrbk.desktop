@@ -2,8 +2,9 @@
 Type=Application
 Name=Backup mit btrbk
 Comment=Snapshopts und Backups mit btrbk
-Exec=/usr/local/bin/btrbk.sh
+# Exec=/usr/local/bin/btrbk.sh
+Exec=/home/stef/.local/bin/btrbk.sh
 Terminal=true
 Icon=drive-removable-media
 Categories=System
-X-Desktop-File-Install-Version=0.24
+X-Desktop-File-Install-Version=0.26
