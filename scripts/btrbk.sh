@@ -9,6 +9,8 @@ read -p "Snapshots und Backups starten? [J]a, [N]ein" -n 1 -r
 echo # neue Zeile
 if [[ $REPLY =~ ^[Jj]$ ]]
 then
+  echo "Speichere installierte Pakete nach $HOME/pkglist.txt"
+  pacman -Q|cut -f 1 -d " " >> $HOME/pkglist.txt
   echo "Starte btrbk für Snapshots und Backups!"
   /usr/bin/btrbk -c /etc/btrbk/root.conf run
   /usr/bin/btrbk -c /etc/btrbk/home.conf run # optional command for further run of configs

@@ -10,7 +10,7 @@ Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](h
 ## Installation mit Systemd-Services (Autostart)
 **Hinweis: btrbk muss installiert sein!**
 
-Klone das  repository
+Klone das repository
 ```
 git clone https://github.com/steff-sson/btrbk-home-clients.git && cd btrbk-home-clients
 ```
@@ -58,11 +58,10 @@ nano btrbk/client/root.conf
 ```
 sudo cp btrbk/client/* /etc/btrbk/
 ```
-Wenn du mehr als eine Konfigurationsdatei hast, editiere das Shell-Script, indem die eine weitere Zeile für den btrbk-Befehl auskommentierst und durch deine weitere Konfigurationsdatei ergänzt
+Wenn du mehr als eine Konfigurationsdatei hast, editiere das Shell-Script, indem du eine weitere Zeile für den btrbk-Befehl ergänzt
 ```
 nano scripts/btrbk.sh
 
-# /usr/bin/btrbk -c /etc/btrbk/home.conf run # optional command for further run of configs
 ```
 Installiere das Shell-Script
 ```
@@ -103,7 +102,7 @@ desktop-file-install --dir=$HOME/.local/share/applications scripts/btrbk.desktop
 * folgt dem selben muster wie "stef-notebook"
 
 ### Hinweis zu Remote Backups
-* Damit btrbk auf entfertne Server per SSH zugreifen kann, muss ein SSH-Kepair angelegt und auf der öffentliche Schlüssel (publickey) auf den Server kopiert werden.
+* Damit btrbk auf entfertne Server per SSH zugreifen kann, muss ein SSH-Keypair angelegt und auf der öffentliche Schlüssel (publickey) auf den Server kopiert werden.
 * ACHTUNG: Dazu muss der Server den root-Zugriff temporär ermöglichen! (siehe [Arch-Wiki](https://wiki.archlinux.org/title/OpenSSH#Limit_root_login))
 * Führe folgende Schritte aus, um ein Schlüsselpaar zu erstellen und zu kopieren:
 ```
