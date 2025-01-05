@@ -65,7 +65,7 @@ nano scripts/btrbk.sh
 ```
 Installiere das Shell-Script
 ```
-sudo cp scripts/btrbk.sh /usr/local/bin/ && sudo chmod +x /usr/local/bin/btrbk.sh
+cp scripts/btrbk.sh $HOME/.local/bin/ && chmod +x $HOME/.local/bin/btrbk.sh
 ```
 Installiere die Desktop-Datei
 ```

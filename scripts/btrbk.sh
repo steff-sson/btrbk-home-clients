@@ -1,12 +1,12 @@
 #!/bin/bash
 #
+## main script
+read -p "Snapshots und Backups starten? [J]a, [N]ein" -n 1 -r
+echo # neue Zeile
 ## Ask for sudo priviledges
 echo "$(whoami)"
 [ "$UID" -eq 0 ] || exec sudo "$0" "$@"
 #
-## main script
-read -p "Snapshots und Backups starten? [J]a, [N]ein" -n 1 -r
-echo # neue Zeile
 if [[ $REPLY =~ ^[Jj]$ ]]
 then
   echo "Speichere installierte Pakete nach $HOME/pkglist.txt"
