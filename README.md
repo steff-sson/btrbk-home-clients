@@ -7,46 +7,12 @@ Meine persönliche Backupstrategie auf Basis es wundervollen Werkzeugs [Btrbk](h
 * In `btrbk`findest du die Konfigurtionsdateien für btrbk nach Geräten sortiert.
 * `services/pkglist.service` wird von jedem Gerät beim Start ausgeführt. Der Service schreibt mit [pacman](https://wiki.archlinux.org/title/pacman) eine aktuelle Liste installierter Pakte.
 
-## Installation mit Systemd-Services (Autostart)
-**Hinweis: btrbk muss installiert sein!**
-
-Klone das repository
-```
-git clone https://github.com/steff-sson/btrbk-home-clients.git && cd btrbk-home-clients
-```
-Mache notwendige Änderungen an den Konfigurationsdateien und kopiere sie anschließend nach /etc/btrbk
-```
-nano btrbk/client/root.conf
-```
-```
-nano btrbk/client/home.conf
-```
-```
-sudo cp btrbk/client/* /etc/btrbk/
-```
-Mache notwendige Änderungen an den Systemd-Servicefiles und kopiere sie anschließend nach /etc/systemd/system
-```
-nano services/client/btrbk-root.service
-```
-```
-nano services/client/btrbk-home.service
-```
-```
-sudo cp services/client/* /etc/systemd/system/
-```
-
-Aktiviere die Systemd-Services
-```
-sudo systemctl enable btrbk-root.service && sudo systemctl enable btrbk-home.service
-```
-
-
 ## Installation mit desktop-Datei für manuellen Start (ohne Services!)
 **Hinweis: btrbk muss installiert sein!**
 
 Klone das  repository
 ```
-git clone https://github.com/steff-sson/btrbk-home-clients.git && cd btrbk-home-clients
+cd $HOME && git clone https://github.com/steff-sson/btrbk-home-clients.git && cd btrbk-home-clients
 ```
 Mache notwendige Änderungen an den Konfigurationsdateien und kopiere sie anschließend nach /etc/btrbk
 ```
@@ -63,14 +29,49 @@ Wenn du mehr als eine Konfigurationsdatei hast, editiere das Shell-Script, indem
 nano scripts/btrbk.sh
 
 ```
-Installiere das Shell-Script
-```
-cp scripts/btrbk.sh $HOME/.local/bin/ && chmod +x $HOME/.local/bin/btrbk.sh
-```
 Installiere die Desktop-Datei
 ```
 desktop-file-install --dir=$HOME/.local/share/applications scripts/btrbk.desktop && update-desktop-database ~/.local/share/applications
 ```
+
+## Installation mit Systemd-Services (Autostart)
+**Hinweis: btrbk muss installiert sein!**
+
+Klone das repository
+```
+git clone https://github.com/steff-sson/btrbk-home-clients.git && cd btrbk-home-clients
+```
+Kopiere die Konfigurationsdateien nach /etc/btrbk/ und mache notwendige Änderungen.
+```
+sudo cp btrbk/client/* /etc/btrbk/
+```
+```
+nano btrbk/client/root.conf
+```
+```
+nano btrbk/client/home.conf
+```
+
+```
+Kopiere die Systemd-Servicefiles nach etc/systemd/system und mache notwendige Änderungen.
+```
+sudo cp services/client/* /etc/systemd/system/
+
+```
+```
+nano services/client/btrbk-home.service
+```
+```
+nano services/client/btrbk-root.service
+```
+
+Aktiviere die Systemd-Services
+```
+sudo systemctl enable btrbk-root.service && sudo systemctl enable btrbk-home.service
+```
+
+
+
 
 ## Architektur
 * Es gibt **einen zentralen** Backup-Server, der Backups empfängt.
