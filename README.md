@@ -31,7 +31,7 @@ nano scripts/btrbk.sh
 ```
 Installiere die Desktop-Datei
 ```
-desktop-file-install --dir=$HOME/.local/share/applications scripts/btrbk.desktop && update-desktop-database ~/.local/share/applications
+cp scripts/btrbk.desktop ~/.local/share/applications/ && update-desktop-database ~/.local/share/applications
 ```
 
 ## Installation mit Systemd-Services (Autostart)
