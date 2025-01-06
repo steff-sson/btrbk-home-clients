@@ -24,11 +24,15 @@ nano btrbk/client/root.conf
 ```
 sudo cp btrbk/client/* /etc/btrbk/
 ```
-Wenn du mehr als eine Konfigurationsdatei hast, editiere das Shell-Script, indem du eine weitere Zeile für den btrbk-Befehl ergänzt
+Wenn du mehr als eine Konfigurationsdatei hast, editiere das Shell-Script, indem du eine weitere Zeile für den btrbk-Befehl ergänzt.
 ```
 nano scripts/btrbk.sh
 
 ```
+Verlinke das Skript mit einem symbolischen Link nach .
+```
+nano scripts/btrbk.sh
+
 Installiere die Desktop-Datei
 ```
 desktop-file-install --dir=$HOME/.local/share/applications scripts/btrbk.desktop && update-desktop-database ~/.local/share/applications
