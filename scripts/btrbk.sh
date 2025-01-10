@@ -11,14 +11,11 @@ read -p "Snapshots und Backups starten? [J]a, [N]ein" -n 1 -r
 echo # neue Zeile
 #
 if [[ $REPLY =~ ^[Jj]$ ]]
-then    
-  echo "Starte btrbk für Snapshots und Backups!"
-  ## Ask for sudo priviledges
-  echo "Du bist als $(whoami) angemeldet."
+then 
   exec sudo /usr/bin/btrbk -c /etc/btrbk/root.conf run
   # exec sudo  /usr/bin/btrbk -c /etc/btrbk/home.conf run # optional command for further run of configs
   echo "Backups und Snapshots sind fertig."
-  read -p "Drücke eine beliebige Taste zum Beenden." -n 1
+  read -p "Drücke eine beliebige Taste zum Beenden."
 else
   echo "Breche ab."
 fi
