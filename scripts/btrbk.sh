@@ -16,7 +16,7 @@ then
   sudo /usr/bin/btrbk -c /etc/btrbk/root.conf run
   # sudo /usr/bin/btrbk -c /etc/btrbk/home.conf run # optional command for further run of configs
   echo "Backups und Snapshots sind fertig."
-  read -p "Drücke eine beliebige Taste zum Beenden."
+  read -p "Drücke eine beliebige Taste zum Beenden." -n 1
 else
   echo "Breche ab."
 fi
